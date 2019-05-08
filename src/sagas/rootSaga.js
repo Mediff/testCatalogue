@@ -1,6 +1,6 @@
 import { takeLatest } from 'redux-saga/effects';
 import ACTION from '../actions/actionTypes';
-import { getProductsSaga } from './productSaga';
+import { getProductsSaga, setProductSaga } from './productSaga';
 import { getReviewsSaga, createReviewSaga } from './reviewSaga';
 import { loginSaga, registerSaga, logoutSaga } from './userSaga';
 
@@ -11,6 +11,7 @@ function* rootSaga() {
     yield takeLatest(ACTION.GET_PRODUCTS, getProductsSaga);
     yield takeLatest(ACTION.GET_PRODUCT_REVIEWS, getReviewsSaga);
     yield takeLatest(ACTION.CREATE_PRODUCT_REVIEW, createReviewSaga);
+    yield takeLatest(ACTION.SET_PRODUCT, setProductSaga);
 }
 
 export default rootSaga;

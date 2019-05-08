@@ -1,0 +1,62 @@
+.mainContainer
+  width: 100%
+  min-height: 100vh
+  display: flex
+  justify-content: center
+  align-items: center
+  padding: 15px
+  font-family: 'Montserrat', sans-serif
+
+  .authContainer
+    width: 100%
+    max-width: 500px
+    overflow: hidden
+    border-radius: 20px
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: center
+    box-shadow: 0 3px 20px 0 rgba(0, 0, 0, 0.1)
+
+    .authTitle
+      width: 100%
+      background-color: #57b846
+      color: white
+      text-align: center
+      padding: 30px 20px
+      font-size: 25px
+      font-weight: 600
+
+    .serverErrorMessage
+      width: 60%
+
+    .authForm
+      display: flex
+      flex-direction: column
+      align-items: center
+      width: 100%
+      padding-top: 70px
+
+      .authInput
+        width: 80%
+        margin-bottom: 20px
+        display: flex
+        flex-direction: column
+
+      .submitButton
+        width: 80%
+
+      .redirectLink
+        display: flex
+        flex-direction: column
+        justify-content: center
+        align-items: center
+        & > p
+          font-size: 14px
+          opacity: 0.8
+        & > a
+          margin-bottom: 30px
+          text-decoration: none
+          text-transform: uppercase
+          color: #57b846
+          font-weight: 700

@@ -5,6 +5,7 @@ const initialState = {
     isFetching: false,
     getReviewsError: null,
     createReviewError: null,
+    starCount: 0,
 };
 
 export default function (state = initialState, action) {
@@ -55,6 +56,12 @@ export default function (state = initialState, action) {
                 isFetching: false,
                 createReviewError: action.error,
                 reviews: null,
+            };
+        }
+        case ACTION.SET_STAR_REVIEW: {
+            return {
+                ...state,
+                starCount: action.payload,
             };
         }
         default: {

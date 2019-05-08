@@ -9,7 +9,7 @@ const initialState = {
 
 export default function (state = initialState, action) {
     switch (action.type) {
-        case ACTION.SET_PRODUCT: {
+        case ACTION.SET_PRODUCT_RESPONSE: {
             return {
                 ...state,
                 currentProduct: action.payload,

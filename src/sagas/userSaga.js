@@ -9,10 +9,16 @@ export function* loginSaga({ payload }) {
         const { user, history } = payload;
         const { username } = user;
         const { data } = yield login(user);
-        const { token } = data;
-        setToken(token);
-        yield put({ type: ACTION.GET_USER_RESPONSE, payload: username });
-        history.push('/');
+        const { success } = data;
+        if (success) {
+            const { token } = data;
+            setToken(token);
+            history.push('/');
+            yield put({ type: ACTION.GET_USER_RESPONSE, payload: { username } });
+        } else {
+            const { message } = data;
+            yield put({ type: ACTION.GET_USER_ERROR, error: message });
+        }
     } catch (e) {
         yield put({ type: ACTION.GET_USER_ERROR, error: e.response.data });
     }
@@ -24,10 +30,16 @@ export function* registerSaga({ payload }) {
         const { user, history } = payload;
         const { username } = user;
         const { data } = yield register(user);
-        const { token } = data;
-        setToken(token);
-        yield put({ type: ACTION.CREATE_USER_RESPONSE, payload: username });
-        history.push('/');
+        const { success } = data;
+        if (success) {
+            const { token } = data;
+            setToken(token);
+            history.push('/');
+            yield put({ type: ACTION.CREATE_USER_RESPONSE, payload: { username } });
+        } else {
+            const { message } = data;
+            yield put({ type: ACTION.CREATE_USER_ERROR, error: message });
+        }
     } catch (e) {
         yield put({ type: ACTION.CREATE_USER_ERROR, error: e.response.data });
     }
@@ -35,5 +47,5 @@ export function* registerSaga({ payload }) {
 
 export function* logoutSaga() {
     clearToken();
-    yield put({ type: ACTION.CLEAR_USER });
+    yield put({ type: ACTION.CLEAR_USER_RESPONSE });
 }

@@ -2,10 +2,11 @@ import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import ProductList from '../ProductList/ProductList';
 import Product from '../Product/Product';
-import styles from './Main.module.sass';
+import Header from '../../components/Header/Header';
 
 const Main = () => (
-    <div className={styles.mainContainer}>
+    <div>
+        <Header />
         <Switch>
             <Redirect exact from='/' to='/products' />
             <Route exact path='/products' component={props => <ProductList {...props} />} />
@@ -13,5 +14,6 @@ const Main = () => (
         </Switch>
     </div>
 );
+
 
 export default Main;

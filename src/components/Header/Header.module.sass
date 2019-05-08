@@ -1,0 +1,44 @@
+@import '../../sass/mixins/mixins'
+
+.mainContainer
+  display: flex
+  min-width: 100%
+  justify-content: space-between
+  align-items: center
+  height: 60px
+  background-color: #086CA2
+  color: white
+  padding: 2% 5%
+
+  .buttonsContainer
+    display: flex
+    flex-direction: row
+    @include for-tablet-portrait
+      display: none
+    .links
+      display: inline-block
+      color: white
+      text-decoration: none
+      margin-left: 10px
+      border-right: 1px solid white
+      padding-right: 10px
+      &:last-child
+        border-right: 0
+
+  .dropdown
+    background-color: #086CA2
+    border: 0
+    cursor: pointer
+    display: none
+    @include for-tablet-portrait
+      display: inline-block
+
+  .dropdownList
+    & .links
+      display: block
+      color: #086CA2
+      opacity: 0.8
+      text-decoration: none
+      margin-left: 10px
+      &:hover
+        opacity: 1

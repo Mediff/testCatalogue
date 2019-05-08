@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import connect from 'react-redux/es/connect/connect';
 import PropTypes from 'prop-types';
 import noop from 'lodash/noop';
-import { getProductsAction } from '../../actions/actionCreator';
+import { getProductsAction, setProductAction } from '../../actions/actionCreator';
 import styles from './ProductList.module.sass';
+import ProductCard from '../../components/ProductCard/ProductCard';
 
 class ProductList extends Component {
     componentDidMount() {
@@ -13,11 +14,27 @@ class ProductList extends Component {
         }
     }
 
-    render(){
-        console.log(this.props.products);
+    onButtonClick = (product) => {
+        const { history, setProduct } = this.props;
+        setProduct(product, history);
+    };
+
+    renderProducts = () => {
+        const { products } = this.props;
+        return products.map(product => (
+            <div className={styles.itemContainer} key={product.id}>
+                <ProductCard product={product} buttonClick={this.onButtonClick} />
+            </div>
+        ));
+    };
+
+    render() {
+        const { products } = this.props;
         return (
             <div className={styles.mainContainer}>
-                Hello from Catalogue
+                <div className={styles.itemsContainer}>
+                    {products && this.renderProducts()}
+                </div>
             </div>
         );
     }
@@ -31,15 +48,21 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     getProducts: () => dispatch(getProductsAction()),
+    setProduct: (product, history) => dispatch(setProductAction(product, history)),
 });
 
 ProductList.defaultProps = {
     products: [],
     getProducts: noop,
+    setProduct: noop,
+    history: null,
 };
 
 ProductList.propTypes = {
     products: PropTypes.arrayOf(PropTypes.object),
     getProducts: PropTypes.func,
+    setProduct: PropTypes.func,
+    history: PropTypes.instanceOf(PropTypes.object),
 };
+
 export default connect(mapStateToProps, mapDispatchToProps)(ProductList);

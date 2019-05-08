@@ -11,3 +11,9 @@ export function* getProductsSaga() {
         yield put({ type: ACTION.GET_USER_ERROR, error: e.response.data });
     }
 }
+
+export function* setProductSaga({ payload }) {
+    const { product, history } = payload;
+    history.push(`/products/product/${product.id}`);
+    yield put({ type: ACTION.SET_PRODUCT_RESPONSE, payload: product });
+}

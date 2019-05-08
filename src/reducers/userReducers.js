@@ -56,11 +56,11 @@ export default function (state = initialState, action) {
                 currentUser: null,
             };
         }
-        case ACTION.CLEAR_USER: {
+        case ACTION.CLEAR_USER_RESPONSE: {
             return {
                 ...state,
                 isFetching: false,
-                authError: false,
+                authError: null,
                 currentUser: null,
             };
         }
